@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+  basePath: '/TSVB',
+  assetPrefix: '/TSVB/',
   swcMinify: false,
   experimental: {
     esmExternals: false,

@@ -17,6 +17,9 @@ dist-ssr
 out/
 .vercel
 
+# Bolt
+.bolt/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
