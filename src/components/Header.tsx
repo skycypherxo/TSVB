@@ -7,6 +7,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
 
+// Helper function to get the correct image path with basePath
+const getImagePath = (path: string) => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  return `${basePath}${path}`;
+};
+
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
@@ -34,7 +40,7 @@ const Header: React.FC = () => {
           <Link href="/" className="flex items-center space-x-3">
             <div className="relative w-10 h-10">
               <Image
-                src="/logo.png"
+                src={getImagePath("/logo.png")}
                 alt="TSVB Trust Logo"
                 fill
                 className="object-contain"

@@ -6,6 +6,12 @@ import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Heart, ExternalLink } from 'lucide-react';
 
+// Helper function to get the correct image path with basePath
+const getImagePath = (path: string) => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  return `${basePath}${path}`;
+};
+
 const Footer: React.FC = () => {
   const { t } = useLanguage();
 
@@ -22,7 +28,7 @@ const Footer: React.FC = () => {
             <div className="flex items-center space-x-4">
               <div className="relative w-12 h-12 rounded-full overflow-hidden shadow-lg">
                 <Image
-                  src="/logo.png"
+                  src={getImagePath("/logo.png")}
                   alt="TSVB Trust Logo"
                   fill
                   className="object-cover"

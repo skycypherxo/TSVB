@@ -6,6 +6,12 @@ import { Award, Calendar, Users, Heart, Star, Trophy } from 'lucide-react';
 import CulturalPattern from '@/components/CulturalPattern';
 import Image from 'next/image';
 
+// Helper function to get the correct image path with basePath
+const getImagePath = (path: string) => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  return `${basePath}${path}`;
+};
+
 const AwardsPage: React.FC = () => {
   const { t } = useLanguage();
   const [activeNidambooruYear, setActiveNidambooruYear] = useState('2026');
@@ -253,7 +259,7 @@ const AwardsPage: React.FC = () => {
                   {/* Image Section */}
                   <div className="relative h-80 lg:h-auto">
                     <Image
-                      src={awardee.image}
+                      src={getImagePath(awardee.image)}
                       alt={`Nidambooru-Shree Award ${activeNidambooruYear} - ${awardee.name}`}
                       fill
                       className="object-cover"
@@ -347,7 +353,7 @@ const AwardsPage: React.FC = () => {
                   {/* Image Section */}
                   <div className="relative h-80 lg:h-auto min-h-[320px]">
                     <Image
-                      src={awardee.image}
+                      src={getImagePath(awardee.image)}
                       alt={`Nidambooru Beedu Ballal Award ${activeBallalYear} - ${awardee.name}`}
                       fill
                       className="object-cover"

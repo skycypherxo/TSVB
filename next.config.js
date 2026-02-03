@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const isGithubPages = process.env.GITHUB_ACTIONS === 'true';
+const basePath = isGithubPages ? '/TSVB' : '';
 
 const nextConfig = {
   output: 'export',
@@ -7,8 +8,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: isGithubPages ? '/TSVB' : '',
+  basePath: basePath,
   assetPrefix: isGithubPages ? '/TSVB/' : '',
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   swcMinify: false,
   experimental: {
     esmExternals: false,

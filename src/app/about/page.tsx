@@ -5,6 +5,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { User, Mail, Phone, MapPin, Award, Heart, Users, Target } from 'lucide-react';
 import CulturalPattern from '@/components/CulturalPattern';
 
+// Helper function to get the correct image path with basePath
+const getImagePath = (path: string) => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  return `${basePath}${path}`;
+};
+
 const AboutPage: React.FC = () => {
   const { t } = useLanguage();
 
@@ -77,7 +83,7 @@ const AboutPage: React.FC = () => {
                 <span className="underline decoration-golden-300 decoration-4 underline-offset-8">{t('about.title')}</span>
               </h1>
               <img 
-                src="/house.jpeg"
+                src={getImagePath("/house.jpeg")}
                 alt="Nidambooru Beedu" 
                 className="rounded-2xl shadow-2xl w-full h-auto object-cover border-4 border-golden-300 max-w-4xl mt-4 mx-auto drop-shadow-[0_0_40px_rgba(255,215,0,0.7)]"
                 style={{ background: 'rgba(255,255,255,0.05)', maxHeight: '1200px' }}
