@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production';
+const isGithubPages = process.env.GITHUB_ACTIONS === 'true';
 
 const nextConfig = {
   output: 'export',
@@ -7,8 +7,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: isProd ? '/TSVB' : '',
-  assetPrefix: isProd ? '/TSVB/' : '',
+  basePath: isGithubPages ? '/TSVB' : '',
+  assetPrefix: isGithubPages ? '/TSVB/' : '',
   swcMinify: false,
   experimental: {
     esmExternals: false,
