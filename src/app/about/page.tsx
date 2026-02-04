@@ -35,6 +35,21 @@ const AboutPage: React.FC = () => {
     },
   ];
 
+  const digitalMediaManagers = [
+    {
+      name: 'Mr. Sushil C Hegde',
+      position: 'Digital Media Manager',
+      image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Managing digital presence and media outreach for the trust.',
+    },
+    {
+      name: 'Vaishnavi Poti',
+      position: 'Digital Media Manager',
+      image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
+      description: 'Coordinating online communications and digital content strategy.',
+    },
+  ];
+
   const values = [
     {
       icon: <Heart className="w-12 h-12" />,
@@ -61,44 +76,80 @@ const AboutPage: React.FC = () => {
   return (
     <div className="py-2">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-maroon-900 via-maroon-800 to-golden-800 text-white py-20 overflow-hidden">
-        <CulturalPattern className="text-golden-400" />
+      <section className="relative bg-gradient-to-br from-maroon-950 via-maroon-900 to-maroon-800 text-white overflow-hidden">
+        <CulturalPattern className="text-golden-400 opacity-20" />
+        
         <div className="container mx-auto px-4 relative z-10">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
-            {/* Left: 3 <br> texts */}
-            <div className="flex-1 max-w-2xl flex flex-col gap-6">
-              <p className="text-xl md:text-2xl text-golden-100 leading-relaxed">
-                India’s ancient dynasties and rulers played a pivotal role in building and preserving the nation’s rich cultural and spiritual heritage. Through the creation of magnificent temples, exquisite architecture, and intricate carvings, they nurtured traditions of devotion and artistic excellence that continue to inspire generations. Each dynasty, in its own era, contributed uniquely to the flourishing of India’s timeless culture, ensuring that the essence of faith, art, and heritage endured through the ages.
-              </p>
-              <p className="text-xl md:text-2xl text-golden-100 leading-relaxed">
-                Contributing to this rich cultural and spiritual heritage were the Ballals of Nidambooru Beedu of Ambalpady, who have been caring for the villages of Nidambooru Magane for over 800 years, with Nidambooru Beedu as the central seat in Ambalpady.
-              </p>
-              <p className="text-xl md:text-2xl text-golden-100 leading-relaxed">
-                The TSVB Trust was founded to honor and preserve this proud legacy of the Ballals — protecting the culture, traditions, and heritage of Nidambooru Beedu. The Trust also strives to promote the rich culture and traditions of Tulunadu, while engaging in social initiatives and contributing to the welfare of society. With a deep respect for heritage and a steadfast commitment to service, TSVB Trust continues the timeless mission of preserving faith, fostering culture, and supporting the community.
-              </p>
+          {/* Title Section */}
+          <div className="text-center pt-16 pb-8 md:pt-20 md:pb-12">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-golden-200 via-golden-300 to-golden-200 bg-clip-text text-transparent">
+              {t('about.title')}
+            </h1>
+            <div className="w-32 h-1 bg-gradient-to-r from-transparent via-golden-400 to-transparent mx-auto mb-4"></div>
+            <p className="text-golden-200 text-lg md:text-xl max-w-3xl mx-auto font-light">
+              Preserving Heritage, Nurturing Culture, Serving Community
+            </p>
+          </div>
+
+          {/* Main Content Grid - Image first on mobile */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 pb-20">
+            {/* Image Section - comes first on mobile */}
+            <div className="order-1 flex flex-col items-center justify-center">
+              <div className="relative group w-full max-w-2xl">
+                <div className="absolute -inset-1 bg-gradient-to-r from-golden-400 to-golden-600 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                <div className="relative">
+                  <img 
+                    src={getImagePath("/house.jpeg")}
+                    alt="Nidambooru Beedu" 
+                    className="rounded-2xl shadow-2xl w-full h-auto object-cover relative"
+                    style={{ maxHeight: '600px' }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/60 via-transparent to-transparent rounded-2xl"></div>
+                </div>
+              </div>
+              <div className="mt-6 text-center">
+                <p className="text-golden-200 text-lg md:text-xl font-semibold">
+                  Nidambooru Beedu House, Ambalpady
+                </p>
+            
+              </div>
             </div>
-            {/* Right: title and image */}
-            <div className="flex-1 flex flex-col items-center justify-center h-full">
-              <h1 className="text-4xl md:text-6xl font-bold mb-12 bg-gradient-to-r from-white to-golden-200 bg-clip-text text-transparent text-center">
-                <span className="underline decoration-golden-300 decoration-4 underline-offset-8">{t('about.title')}</span>
-              </h1>
-              <img 
-                src={getImagePath("/house.jpeg")}
-                alt="Nidambooru Beedu" 
-                className="rounded-2xl shadow-2xl w-full h-auto object-cover border-4 border-golden-300 max-w-4xl mt-4 mx-auto drop-shadow-[0_0_40px_rgba(255,215,0,0.7)]"
-                style={{ background: 'rgba(255,255,255,0.05)', maxHeight: '1200px' }}
-              />
-              <div className="text-golden-200 text-center text-lg mt-2 font-medium drop-shadow-sm">
-                Nidambooru Beedu House, Ambalpady
+
+            {/* Text Content - comes second on mobile */}
+            <div className="order-2 flex flex-col justify-center space-y-6 lg:space-y-8">
+              <div className="backdrop-blur-sm bg-white/5 rounded-2xl p-6 md:p-8 border border-golden-400/20 hover:border-golden-400/40 transition-all duration-300 hover:shadow-xl hover:shadow-golden-400/10">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-1.5 h-full bg-gradient-to-b from-golden-400 to-transparent rounded-full"></div>
+                  <p className="text-base md:text-lg text-golden-50 leading-relaxed">
+                    India's ancient dynasties and rulers played a pivotal role in building and preserving the nation's rich cultural and spiritual heritage. Through the creation of magnificent temples, exquisite architecture, and intricate carvings, they nurtured traditions of devotion and artistic excellence that continue to inspire generations.
+                  </p>
+                </div>
+              </div>
+
+              <div className="backdrop-blur-sm bg-white/5 rounded-2xl p-6 md:p-8 border border-golden-400/20 hover:border-golden-400/40 transition-all duration-300 hover:shadow-xl hover:shadow-golden-400/10">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-1.5 h-full bg-gradient-to-b from-golden-400 to-transparent rounded-full"></div>
+                  <p className="text-base md:text-lg text-golden-50 leading-relaxed">
+                    Contributing to this rich cultural and spiritual heritage were the <span className="text-golden-300 font-semibold">Ballals of Nidambooru Beedu</span> of Ambalpady, who have been caring for the villages of Nidambooru Magane for over 800 years, with Nidambooru Beedu as the central seat in Ambalpady.
+                  </p>
+                </div>
+              </div>
+
+              <div className="backdrop-blur-sm bg-white/5 rounded-2xl p-6 md:p-8 border border-golden-400/20 hover:border-golden-400/40 transition-all duration-300 hover:shadow-xl hover:shadow-golden-400/10">
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-1.5 h-full bg-gradient-to-b from-golden-400 to-transparent rounded-full"></div>
+                  <p className="text-base md:text-lg text-golden-50 leading-relaxed">
+                    The <span className="text-golden-300 font-semibold">TSVB Trust</span> was founded to honor and preserve this proud legacy — protecting the culture, traditions, and heritage of Nidambooru Beedu. The Trust also strives to promote the rich culture and traditions of Tulunadu, while engaging in social initiatives and contributing to the welfare of society.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+
+        
       </section>
-
-     
-
-
 
       {/* Trustees Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
@@ -130,9 +181,46 @@ const AboutPage: React.FC = () => {
                     <p className="text-golden-200 font-medium">{trustee.position}</p>
                   </div>
                 </div>
+                
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Digital Media Managers Section */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-950">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-maroon-900 dark:text-golden-400 mb-4">
+              Digital Media Team
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Connecting tradition with technology through digital excellence
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {digitalMediaManagers.map((manager, index) => (
+              <div
+                key={index}
+                className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={manager.image}
+                    alt={manager.name}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/80 to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <h3 className="text-xl font-semibold mb-1">{manager.name}</h3>
+                    <p className="text-golden-200 font-medium">{manager.position}</p>
+                  </div>
+                </div>
                 <div className="p-6">
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    {trustee.description}
+                    {manager.description}
                   </p>
                 </div>
               </div>
@@ -140,8 +228,6 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      
     </div>
   );
 };
