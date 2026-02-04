@@ -165,50 +165,7 @@ const AwardsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Awards Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-maroon-900 dark:text-golden-400 mb-4">
-              Our Awards & Recognition
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Celebrating the recognition we've received for our dedication to cultural preservation and community service
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {awards.map((award, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-golden-50 to-maroon-50 dark:from-gray-800 dark:to-gray-700 rounded-xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-golden-500"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="bg-maroon-700 dark:bg-golden-600 rounded-full p-3 text-white">
-                    {award.icon}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="bg-maroon-700 dark:bg-golden-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                        {award.year}
-                      </span>
-                      <span className="text-gray-600 dark:text-gray-300 text-sm">
-                        {award.category}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-maroon-900 dark:text-white mb-3">
-                      {award.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                      {award.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    
 
       {/* Main Award Tabs Section */}
       <section className="py-20 bg-gradient-to-br from-maroon-50 to-golden-50 dark:from-gray-800 dark:to-gray-900">
@@ -476,47 +433,7 @@ const AwardsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Impact Statistics */}
-      <section className="py-20 bg-maroon-900 dark:bg-maroon-950 text-white relative overflow-hidden">
-        <CulturalPattern className="text-golden-400" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our Impact
-            </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              Numbers that reflect our commitment to the community
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-golden-400 mb-2">
-                10+
-              </div>
-              <p className="text-lg text-gray-300">Years of Service</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-golden-400 mb-2">
-                500+
-              </div>
-              <p className="text-lg text-gray-300">Families Served</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-golden-400 mb-2">
-                50+
-              </div>
-              <p className="text-lg text-gray-300">Events Organized</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-golden-400 mb-2">
-                15+
-              </div>
-              <p className="text-lg text-gray-300">Awards Received</p>
-            </div>
-          </div>
-        </div>
-      </section>
+  
     </div>
   );
 };

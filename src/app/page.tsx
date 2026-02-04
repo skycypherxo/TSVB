@@ -2,9 +2,16 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Star, Users, Award, Calendar, ArrowRight, Heart } from 'lucide-react';
 import CulturalPattern from '@/components/CulturalPattern';
+
+// Helper function to get the correct image path with basePath
+const getImagePath = (path: string) => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  return `${basePath}${path}`;
+};
 
 // Simple Carousel for Latest Events
 type Event = {
@@ -43,6 +50,13 @@ const TickerCarousel: React.FC<{ items: Event[]; t: any; showDate?: boolean }> =
 
   if (!Array.isArray(items) || items.length === 0) return null;
 
+  const handleCardClick = (event: Event) => {
+    // Check if it's an award card (has emoji in title)
+    if (event.title.includes('🏅') || event.title.includes('🏆')) {
+      window.location.href = '/awards';
+    }
+  };
+
   return (
     <div className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       <div className="overflow-hidden rounded-2xl shadow-lg min-h-[540px] relative w-screen">
@@ -61,7 +75,10 @@ const TickerCarousel: React.FC<{ items: Event[]; t: any; showDate?: boolean }> =
               className="flex-shrink-0 px-8"
               style={{ width: CARD_WIDTH, height: CARD_HEIGHT }}
             >
-              <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 flex flex-col items-stretch h-full">
+              <div 
+                className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 flex flex-col items-stretch h-full cursor-pointer hover:shadow-xl transition-shadow duration-300"
+                onClick={() => handleCardClick(event)}
+              >
                 {/* Image on top */}
                 <div className="relative w-full h-[300px] overflow-hidden flex-shrink-0 rounded-t-2xl">
                   <img
@@ -78,12 +95,12 @@ const TickerCarousel: React.FC<{ items: Event[]; t: any; showDate?: boolean }> =
                   )}
                 </div>
                 {/* Text below image */}
-                <div className="p-8 flex flex-col justify-between w-full flex-1">
+                <div className="p-6 flex flex-col justify-between w-full flex-1 overflow-hidden">
                   <div>
-                    <h3 className="text-3xl font-bold text-maroon-900 dark:text-golden-400 mb-2">
+                    <h3 className="text-2xl font-bold text-maroon-900 dark:text-golden-400 mb-2 line-clamp-2">
                       {event.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed text-lg">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base line-clamp-2">
                       {event.location}
                     </p>
                   </div>
@@ -124,6 +141,18 @@ const HomePage: React.FC = () => {
   ];
 
   const latestEvents = [
+    {
+      title: '🏅 Nidambooru Beedu Shree Award 2026',
+      date: '31st January 2026',
+      location: 'Shri K. Srinivasa Hegde - Advocate & Eminent Social Worker',
+      image: getImagePath('/Aw1.jpeg'),
+    },
+    {
+      title: '🏆 Nidambooru Beedu Ballal Award 2026',
+      date: '2026',
+      location: 'Shri Brahma Baidarkala Yakshagana Kala Mandali - Bolje, Udyavara',
+      image: getImagePath('/Aw2.jpeg'),
+    },
     {
       title: 'Annual Cultural Festival',
       date: 'March 15, 2024',
@@ -277,8 +306,6 @@ const HomePage: React.FC = () => {
           <TickerCarousel items={latestEvents} t={t} showDate={true} />
         </div>
       </section>
-
-
 
 
       {/* Call to Action */}
