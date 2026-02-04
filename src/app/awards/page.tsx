@@ -5,6 +5,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Award, Calendar, Users, Heart, Star, Trophy } from 'lucide-react';
 import CulturalPattern from '@/components/CulturalPattern';
 
+// Helper function to get the correct image path with basePath
+const getImagePath = (path: string) => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  return `${basePath}${path}`;
+};
+
 const AwardsPage: React.FC = () => {
   const { t } = useLanguage();
   const [activeAwardTab, setActiveAwardTab] = useState<'shree' | 'ballal'>('shree');
@@ -26,7 +32,7 @@ const AwardsPage: React.FC = () => {
         title: 'Advocate & Eminent Social Worker',
         description: 'This year, the Nidambooru Beedu Shree Award was awarded to Shri K. Srinivasa Hegde, the elder son of Shri Tonse Bhojaraja Hegde and Smt. Sundari Bhojaraja Hegde, born on 10.05.1953. He completed his Bachelor of Law degree from Udupi Vaikunta Baliga Law College and has been practicing at the District Court of Udupi since 1985. Over the years, Shri K. Srinivasa Hegde has rendered dedicated service to numerous religious institutions and has made significant contributions to a wide range of social and community-oriented activities, consistently working for the welfare of society. In recognition of his leadership and commitment to community service, he is currently serving as the Honorary President of Nidambooru Yuvaka Mandala.',
         date: '31st January 2026',
-        image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Aw1.jpeg`,
+        image: getImagePath('/Aw1.jpeg'),
         presentedBy: 'Dr. N. B. Vijaya Ballal, President, T.S.V.B Trust, Nidambooru Beedu, Ambalpady',
       },
     ],
@@ -47,7 +53,7 @@ const AwardsPage: React.FC = () => {
         title: 'Bolje, Udyavara',
         description: 'This year, the award has been bestowed upon Shri Brahma Baidarkala Yakshagana Kala Mandali, Bolje, Udyavara, in recognition of its dedicated service and significant contribution to the rich tradition of Yakshagana. The institution was founded on 17 November 1985 by Shri Sundar Kotian. Under the leadership of Tonse Jayanth Kumar, structured Yakshagana classes were initiated, and activities such as Yakshagana Tala–Maddale, Yakshagana Harikathe, and stage performances were actively promoted. Over the years, the Mandali has nurtured more than 200 performers and has successfully presented over 100 programmes, playing a vital role in preserving and propagating this classical folk art.',
         date: '2026',
-        image: `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/Aw2.jpeg`,
+        image: getImagePath('/Aw2.jpeg'),
         presentedBy: 'Dr. N. B. Vijaya Ballal, President, T.S.V.B Trust, Nidambooru Beedu, Ambalpady',
       },
     ],
