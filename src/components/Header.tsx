@@ -23,7 +23,7 @@ const Header: React.FC = () => {
     { key: 'nav.about', href: '/about' },
     { key: 'nav.newsletter', href: '/newsletter' },
     { key: 'nav.awards', href: '/awards' },
-    { key: 'nav.honours', href: '/honours' },
+    { key: 'nav.history', href: '/history' },
     { key: 'nav.legacy', href: '/legacy' },
     { key: 'nav.rootsspoken', href: '/rootsspoken' },
     { key: 'nav.gallery', href: '/gallery' },
