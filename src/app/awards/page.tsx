@@ -4,16 +4,10 @@ import React, { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Award, Calendar, Users, Heart, Star, Trophy } from 'lucide-react';
 import CulturalPattern from '@/components/CulturalPattern';
-import Image from 'next/image';
-
-// Helper function to get the correct image path with basePath
-const getImagePath = (path: string) => {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
-  return `${basePath}${path}`;
-};
 
 const AwardsPage: React.FC = () => {
   const { t } = useLanguage();
+  const [activeAwardTab, setActiveAwardTab] = useState<'shree' | 'ballal'>('shree');
   const [activeNidambooruYear, setActiveNidambooruYear] = useState('2026');
   const [activeBallalYear, setActiveBallalYear] = useState('2026');
 
@@ -214,191 +208,220 @@ const AwardsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Nidambooru-Shree Awards Section */}
+      {/* Main Award Tabs Section */}
       <section className="py-20 bg-gradient-to-br from-maroon-50 to-golden-50 dark:from-gray-800 dark:to-gray-900">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-block bg-maroon-900 dark:bg-golden-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
-              ✨ Special Recognition
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-maroon-900 dark:text-golden-400 mb-4">
-              Nidambooru-Shree Awards
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              In sacred remembrance of Late Shri N. B. Annaji Ballal of Nidambooru Beedu, with divine blessings of Shri Rajarajeshwari Devi, Kula Devata Shri Janardana Swamy, and Shri Mahakali Devi
-            </p>
-          </div>
-
-          {/* Year Tabs */}
+          {/* Main Tabs */}
           <div className="flex justify-center mb-12">
-            <div className="inline-flex bg-white dark:bg-gray-800 rounded-full p-1 shadow-lg">
-              {nidambooruYears.map((year) => (
-                <button
-                  key={year}
-                  onClick={() => setActiveNidambooruYear(year)}
-                  className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                    activeNidambooruYear === year
-                      ? 'bg-maroon-700 text-white shadow-md'
-                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {year}
-                </button>
-              ))}
+            <div className="inline-flex bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-xl border-2 border-golden-300 dark:border-golden-600">
+              <button
+                onClick={() => setActiveAwardTab('shree')}
+                className={`px-8 py-3 rounded-full font-bold text-base transition-all duration-300 ${
+                  activeAwardTab === 'shree'
+                    ? 'bg-gradient-to-r from-maroon-700 to-maroon-600 text-white shadow-lg scale-105'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                }`}
+              >
+                🏅 Nidambooru-Shree Award
+              </button>
+              <button
+                onClick={() => setActiveAwardTab('ballal')}
+                className={`px-8 py-3 rounded-full font-bold text-base transition-all duration-300 ${
+                  activeAwardTab === 'ballal'
+                    ? 'bg-gradient-to-r from-golden-600 to-golden-500 text-white shadow-lg scale-105'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                }`}
+              >
+                🏆 Nidambooru Beedu Ballal Award
+              </button>
             </div>
           </div>
 
-          {/* Award Cards for Selected Year */}
-          <div className="space-y-8">
-            {nidambooruShreeAwards[activeNidambooruYear]?.map((awardee, index) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-golden-200 dark:border-golden-600"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                  {/* Image Section */}
-                  <div className="relative h-80 lg:h-auto">
-                    <Image
-                      src={getImagePath(awardee.image)}
-                      alt={`Nidambooru-Shree Award ${activeNidambooruYear} - ${awardee.name}`}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/60 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="bg-golden-600 text-white px-4 py-2 rounded-lg inline-block">
-                        <Calendar className="w-4 h-4 inline mr-2" />
-                        {awardee.date}
+          {/* Nidambooru-Shree Awards Tab Content */}
+          {activeAwardTab === 'shree' && (
+            <div className="animate-fadeIn">
+              <div className="text-center mb-12">
+                <div className="inline-block bg-maroon-900 dark:bg-golden-600 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                  ✨ Special Recognition
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-maroon-900 dark:text-golden-400 mb-4">
+                  Nidambooru-Shree Awards
+                </h2>
+                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  In sacred remembrance of Late Shri N. B. Annaji Ballal of Nidambooru Beedu, with divine blessings of Shri Rajarajeshwari Devi, Kula Devata Shri Janardana Swamy, and Shri Mahakali Devi
+                </p>
+              </div>
+
+              {/* Year Tabs */}
+              <div className="flex justify-center mb-12">
+                <div className="inline-flex bg-white dark:bg-gray-800 rounded-full p-1 shadow-lg">
+                  {nidambooruYears.map((year) => (
+                    <button
+                      key={year}
+                      onClick={() => setActiveNidambooruYear(year)}
+                      className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
+                        activeNidambooruYear === year
+                          ? 'bg-maroon-700 text-white shadow-md'
+                          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      {year}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Award Cards for Selected Year */}
+              <div className="space-y-8">
+                {nidambooruShreeAwards[activeNidambooruYear]?.map((awardee, index) => (
+                  <div
+                    key={index}
+                    className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-golden-200 dark:border-golden-600"
+                  >
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                      {/* Image Section */}
+                      <div className="relative h-80 lg:h-auto">
+                        <img
+                          src={awardee.image}
+                          alt={`Nidambooru-Shree Award ${activeNidambooruYear} - ${awardee.name}`}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/60 to-transparent"></div>
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="bg-golden-600 text-white px-4 py-2 rounded-lg inline-block">
+                            <Calendar className="w-4 h-4 inline mr-2" />
+                            {awardee.date}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Content Section */}
+                      <div className="p-8 lg:p-10 flex flex-col justify-center">
+                        <div className="mb-4">
+                          <span className="bg-maroon-100 dark:bg-maroon-900 text-maroon-800 dark:text-golden-400 px-3 py-1 rounded-full text-sm font-medium">
+                            Nidambooru-Shree Award {activeNidambooruYear}
+                          </span>
+                        </div>
+                        
+                        <h3 className="text-2xl md:text-3xl font-bold text-maroon-900 dark:text-white mb-2">
+                          {awardee.name}
+                        </h3>
+                        <p className="text-golden-600 dark:text-golden-400 font-medium mb-4">
+                          {awardee.title}
+                        </p>
+                        
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                          {awardee.description}
+                        </p>
+
+                        <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+                          <p className="text-sm text-gray-500 dark:text-gray-400 italic mb-2">
+                            {awardee.dedication}
+                          </p>
+                          <p className="text-sm text-maroon-700 dark:text-golden-400 font-medium">
+                            — {awardee.presentedBy}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
+                ))}
+              </div>
+            </div>
+          )}
 
-                  {/* Content Section */}
-                  <div className="p-8 lg:p-10 flex flex-col justify-center">
-                    <div className="mb-4">
-                      <span className="bg-maroon-100 dark:bg-maroon-900 text-maroon-800 dark:text-golden-400 px-3 py-1 rounded-full text-sm font-medium">
-                        Nidambooru-Shree Award {activeNidambooruYear}
-                      </span>
-                    </div>
-                    
-                    <h3 className="text-2xl md:text-3xl font-bold text-maroon-900 dark:text-white mb-2">
-                      {awardee.name}
-                    </h3>
-                    <p className="text-golden-600 dark:text-golden-400 font-medium mb-4">
-                      {awardee.title}
-                    </p>
-                    
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                      {awardee.description}
-                    </p>
+          {/* Nidambooru Beedu Ballal Awards Tab Content */}
+          {activeAwardTab === 'ballal' && (
+            <div className="animate-fadeIn">
+              <div className="text-center mb-12">
+                <div className="inline-block bg-golden-600 dark:bg-maroon-700 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
+                  🏆 Cultural Excellence
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-maroon-900 dark:text-golden-400 mb-4">
+                  Nidambooru Beedu Ballal Award
+                </h2>
+                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                  In memory of Late Shri Annaji Ballal of Nidambooru Beedu, this award is conferred every year to recognize dedicated service and significant contributions to cultural traditions
+                </p>
+              </div>
 
-                    <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-                      <p className="text-sm text-gray-500 dark:text-gray-400 italic mb-2">
-                        {awardee.dedication}
-                      </p>
-                      <p className="text-sm text-maroon-700 dark:text-golden-400 font-medium">
-                        — {awardee.presentedBy}
-                      </p>
-                    </div>
-                  </div>
+              {/* Year Tabs */}
+              <div className="flex justify-center mb-12">
+                <div className="inline-flex bg-gray-100 dark:bg-gray-800 rounded-full p-1 shadow-lg">
+                  {ballalYears.map((year) => (
+                    <button
+                      key={year}
+                      onClick={() => setActiveBallalYear(year)}
+                      className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
+                        activeBallalYear === year
+                          ? 'bg-golden-600 text-white shadow-md'
+                          : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                      }`}
+                    >
+                      {year}
+                    </button>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Nidambooru Beedu Ballal Awards Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <div className="inline-block bg-golden-600 dark:bg-maroon-700 text-white px-6 py-2 rounded-full text-sm font-semibold mb-4">
-              🏆 Cultural Excellence
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-maroon-900 dark:text-golden-400 mb-4">
-              Nidambooru Beedu Ballal Award
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              In memory of Late Shri Annaji Ballal of Nidambooru Beedu, this award is conferred every year to recognize dedicated service and significant contributions to cultural traditions
-            </p>
-          </div>
+              {/* Award Cards for Selected Year */}
+              <div className="space-y-8">
+                {nidambooruBallalAwards[activeBallalYear]?.map((awardee, index) => (
+                  <div
+                    key={index}
+                    className="bg-gradient-to-br from-golden-50 to-maroon-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-xl overflow-hidden border border-maroon-200 dark:border-maroon-600"
+                  >
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                      {/* Image Section */}
+                      <div className="relative h-80 lg:h-auto min-h-[320px]">
+                        <img
+                          src={awardee.image}
+                          alt={`Nidambooru Beedu Ballal Award ${activeBallalYear} - ${awardee.name}`}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/60 to-transparent"></div>
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="bg-maroon-700 text-white px-4 py-2 rounded-lg inline-block">
+                            <Calendar className="w-4 h-4 inline mr-2" />
+                            {awardee.date}
+                          </div>
+                        </div>
+                      </div>
 
-          {/* Year Tabs */}
-          <div className="flex justify-center mb-12">
-            <div className="inline-flex bg-gray-100 dark:bg-gray-800 rounded-full p-1 shadow-lg">
-              {ballalYears.map((year) => (
-                <button
-                  key={year}
-                  onClick={() => setActiveBallalYear(year)}
-                  className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                    activeBallalYear === year
-                      ? 'bg-golden-600 text-white shadow-md'
-                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  {year}
-                </button>
-              ))}
-            </div>
-          </div>
+                      {/* Content Section */}
+                      <div className="p-8 lg:p-10 flex flex-col justify-center">
+                        <div className="mb-4">
+                          <span className="bg-golden-100 dark:bg-golden-900 text-golden-800 dark:text-golden-300 px-3 py-1 rounded-full text-sm font-medium">
+                            Nidambooru Beedu Ballal Award {activeBallalYear}
+                          </span>
+                        </div>
+                        
+                        <h3 className="text-2xl md:text-3xl font-bold text-maroon-900 dark:text-white mb-2">
+                          {awardee.name}
+                        </h3>
+                        <p className="text-maroon-600 dark:text-maroon-400 font-medium mb-4">
+                          {awardee.title}
+                        </p>
+                        
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                          {awardee.description}
+                        </p>
 
-          {/* Award Cards for Selected Year */}
-          <div className="space-y-8">
-            {nidambooruBallalAwards[activeBallalYear]?.map((awardee, index) => (
-              <div
-                key={index}
-                className="bg-gradient-to-br from-golden-50 to-maroon-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-xl overflow-hidden border border-maroon-200 dark:border-maroon-600"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                  {/* Image Section */}
-                  <div className="relative h-80 lg:h-auto min-h-[320px]">
-                    <Image
-                      src={getImagePath(awardee.image)}
-                      alt={`Nidambooru Beedu Ballal Award ${activeBallalYear} - ${awardee.name}`}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/60 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="bg-maroon-700 text-white px-4 py-2 rounded-lg inline-block">
-                        <Calendar className="w-4 h-4 inline mr-2" />
-                        {awardee.date}
+                        <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+                          <p className="text-sm text-gray-500 dark:text-gray-400 italic mb-2">
+                            {awardee.dedication}
+                          </p>
+                          <p className="text-sm text-maroon-700 dark:text-golden-400 font-medium">
+                            — {awardee.presentedBy}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  {/* Content Section */}
-                  <div className="p-8 lg:p-10 flex flex-col justify-center">
-                    <div className="mb-4">
-                      <span className="bg-golden-100 dark:bg-golden-900 text-golden-800 dark:text-golden-300 px-3 py-1 rounded-full text-sm font-medium">
-                        Nidambooru Beedu Ballal Award {activeBallalYear}
-                      </span>
-                    </div>
-                    
-                    <h3 className="text-2xl md:text-3xl font-bold text-maroon-900 dark:text-white mb-2">
-                      {awardee.name}
-                    </h3>
-                    <p className="text-maroon-600 dark:text-maroon-400 font-medium mb-4">
-                      {awardee.title}
-                    </p>
-                    
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                      {awardee.description}
-                    </p>
-
-                    <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-                      <p className="text-sm text-gray-500 dark:text-gray-400 italic mb-2">
-                        {awardee.dedication}
-                      </p>
-                      <p className="text-sm text-maroon-700 dark:text-golden-400 font-medium">
-                        — {awardee.presentedBy}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
