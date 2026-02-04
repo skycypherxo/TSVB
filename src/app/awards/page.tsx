@@ -18,17 +18,15 @@ const AwardsPage: React.FC = () => {
     description: string;
     date: string;
     image: string;
-    dedication: string;
     presentedBy: string;
   }>> = {
     '2026': [
       {
         name: 'Shri K. Srinivasa Hegde',
         title: 'Advocate & Eminent Social Worker',
-        description: 'In sacred remembrance of Late Shri N. B. Annaji Ballal of Nidambooru Beedu, and with the divine blessings of Shri Rajarajeshwari Devi of Nidambooru Beedu, Kula Devata Shri Janardana Swamy, and Shri Mahakali Devi, the "Nidambooru-Shree Award" was awarded to Advocate and eminent social worker of Nidambooru Magane, Shri K. Srinivasa Hegde.',
+        description: 'This year, the Nidambooru Beedu Shree Award was awarded to Shri K. Srinivasa Hegde, the elder son of Shri Tonse Bhojaraja Hegde and Smt. Sundari Bhojaraja Hegde, born on 10.05.1953. He completed his Bachelor of Law degree from Udupi Vaikunta Baliga Law College and has been practicing at the District Court of Udupi since 1985. Over the years, Shri K. Srinivasa Hegde has rendered dedicated service to numerous religious institutions and has made significant contributions to a wide range of social and community-oriented activities, consistently working for the welfare of society. In recognition of his leadership and commitment to community service, he is currently serving as the Honorary President of Nidambooru Yuvaka Mandala.',
         date: '31st January 2026',
         image: '/Aw1.jpeg',
-        dedication: 'In sacred remembrance of Late Shri N. B. Annaji Ballal of Nidambooru Beedu',
         presentedBy: 'Dr. N. B. Vijaya Ballal, President, T.S.V.B Trust, Nidambooru Beedu, Ambalpady',
       },
     ],
@@ -41,17 +39,15 @@ const AwardsPage: React.FC = () => {
     description: string;
     date: string;
     image: string;
-    dedication: string;
     presentedBy: string;
   }>> = {
     '2026': [
       {
         name: 'Shri Brahma Baidarkala Yakshagana Kala Mandali',
         title: 'Bolje, Udyavara',
-        description: 'In memory of Late Shri Annaji Ballal of Nidambooru Beedu, the "Nidambooru Beedu Ballal Award" is conferred every year. This year, the award has been bestowed upon Shri Brahma Baidarkala Yakshagana Kala Mandali, Bolje, Udyavara, in recognition of its dedicated service and significant contribution to the rich tradition of Yakshagana.',
+        description: 'This year, the award has been bestowed upon Shri Brahma Baidarkala Yakshagana Kala Mandali, Bolje, Udyavara, in recognition of its dedicated service and significant contribution to the rich tradition of Yakshagana. The institution was founded on 17 November 1985 by Shri Sundar Kotian. Under the leadership of Tonse Jayanth Kumar, structured Yakshagana classes were initiated, and activities such as Yakshagana Tala–Maddale, Yakshagana Harikathe, and stage performances were actively promoted. Over the years, the Mandali has nurtured more than 200 performers and has successfully presented over 100 programmes, playing a vital role in preserving and propagating this classical folk art.',
         date: '2026',
         image: '/Aw2.jpeg',
-        dedication: 'In memory of Late Shri Annaji Ballal of Nidambooru Beedu',
         presentedBy: 'Dr. N. B. Vijaya Ballal, President, T.S.V.B Trust, Nidambooru Beedu, Ambalpady',
       },
     ],
@@ -222,7 +218,7 @@ const AwardsPage: React.FC = () => {
                     : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
-                🏅 Nidambooru-Shree Award
+                🏅 Nidambooru Beedu Shree Award
               </button>
               <button
                 onClick={() => setActiveAwardTab('ballal')}
@@ -245,10 +241,10 @@ const AwardsPage: React.FC = () => {
                   ✨ Special Recognition
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-maroon-900 dark:text-golden-400 mb-4">
-                  Nidambooru-Shree Awards
+                  Nidambooru Beedu Shree Awards
                 </h2>
                 <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                  In sacred remembrance of Late Shri N. B. Annaji Ballal of Nidambooru Beedu, with divine blessings of Shri Rajarajeshwari Devi, Kula Devata Shri Janardana Swamy, and Shri Mahakali Devi
+                 In sacred remembrance of Late Shri N. B. Annaji Ballal of Nidambooru Beedu, and with the divine blessings of Shri Rajarajeshwari Devi of Nidambooru Beedu, Kula Devata Shri Janardana Swamy, and Shri Mahakali Devi, the “Nidambooru-Shree Award” is conferred annually upon individuals who have rendered exemplary service to society through their dedicated contributions in the fields of social service, education, healthcare, and other humanitarian and community welfare activities, thereby creating a meaningful and lasting impact on society.
                 </p>
               </div>
 
@@ -283,7 +279,7 @@ const AwardsPage: React.FC = () => {
                       <div className="relative h-80 lg:h-auto">
                         <img
                           src={awardee.image}
-                          alt={`Nidambooru-Shree Award ${activeNidambooruYear} - ${awardee.name}`}
+                          alt={`Nidambooru Beedu Shree Award ${activeNidambooruYear} - ${awardee.name}`}
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/60 to-transparent"></div>
@@ -299,7 +295,7 @@ const AwardsPage: React.FC = () => {
                       <div className="p-8 lg:p-10 flex flex-col justify-center">
                         <div className="mb-4">
                           <span className="bg-maroon-100 dark:bg-maroon-900 text-maroon-800 dark:text-golden-400 px-3 py-1 rounded-full text-sm font-medium">
-                            Nidambooru-Shree Award {activeNidambooruYear}
+                            Nidambooru Beedu Shree Award {activeNidambooruYear}
                           </span>
                         </div>
                         
@@ -315,9 +311,6 @@ const AwardsPage: React.FC = () => {
                         </p>
 
                         <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-                          <p className="text-sm text-gray-500 dark:text-gray-400 italic mb-2">
-                            {awardee.dedication}
-                          </p>
                           <p className="text-sm text-maroon-700 dark:text-golden-400 font-medium">
                             — {awardee.presentedBy}
                           </p>
@@ -341,7 +334,7 @@ const AwardsPage: React.FC = () => {
                   Nidambooru Beedu Ballal Award
                 </h2>
                 <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                  In memory of Late Shri Annaji Ballal of Nidambooru Beedu, this award is conferred every year to recognize dedicated service and significant contributions to cultural traditions
+                 The Nidambooru Beedu Ballal Award is given annually in loving memory of Late Shri Annaji Ballal. It honours individuals or organisations that have made a significant contribution to the arts, culture and society, celebrating excellence, community service and cultural preservation.
                 </p>
               </div>
 
@@ -408,9 +401,6 @@ const AwardsPage: React.FC = () => {
                         </p>
 
                         <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
-                          <p className="text-sm text-gray-500 dark:text-gray-400 italic mb-2">
-                            {awardee.dedication}
-                          </p>
                           <p className="text-sm text-maroon-700 dark:text-golden-400 font-medium">
                             — {awardee.presentedBy}
                           </p>
