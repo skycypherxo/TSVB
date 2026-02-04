@@ -174,7 +174,9 @@ const HomePage: React.FC = () => {
   ];
 
   const tickerUpdates = [
-    "🎉 New Cultural Workshop starting February 2025 - Register now!",
+    "� Nidambooru Beedu Shree Award 2026",
+    "🏆 Nidambooru Beedu Ballal Award 2026",
+    "�🎉 New Cultural Workshop starting February 2025 - Register now!",
     "📢 Annual Festival dates announced - March 15-17, 2025",
     "🏆 TSVB Trust awarded 'Heritage Preservation Excellence' recognition",
     "📚 Free educational resources now available for community members",
