@@ -101,7 +101,7 @@ const AwardsPage: React.FC = () => {
     {
       title: 'Annual Cultural Festival',
       date: 'March 2024',
-      description: 'A grand celebration of traditional arts, music, and dance featuring local artists.',
+
       image: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=600',
       participants: '500+',
       type: 'Cultural Event',
@@ -109,7 +109,7 @@ const AwardsPage: React.FC = () => {
     {
       title: 'Educational Scholarship Program',
       date: 'January 2024',
-      description: 'Providing scholarships to deserving students from underprivileged backgrounds.',
+
       image: 'https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=600',
       participants: '50',
       type: 'Education',
@@ -117,7 +117,7 @@ const AwardsPage: React.FC = () => {
     {
       title: 'Community Health Camp',
       date: 'December 2023',
-      description: 'Free medical checkups and health awareness programs for local communities.',
+
       image: 'https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=600',
       participants: '300+',
       type: 'Healthcare',
@@ -125,7 +125,7 @@ const AwardsPage: React.FC = () => {
     {
       title: 'Heritage Documentation Project',
       date: 'November 2023',
-      description: 'Documenting and preserving local history, traditions, and family genealogies.',
+
       image: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=600',
       participants: '100+',
       type: 'Documentation',
@@ -133,7 +133,7 @@ const AwardsPage: React.FC = () => {
     {
       title: 'Women Empowerment Workshop',
       date: 'October 2023',
-      description: 'Skills development and entrepreneurship training for women in the community.',
+
       image: 'https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=600',
       participants: '75',
       type: 'Empowerment',
@@ -141,7 +141,6 @@ const AwardsPage: React.FC = () => {
     {
       title: 'Environmental Conservation Drive',
       date: 'September 2023',
-      description: 'Tree plantation and environmental awareness campaign in collaboration with local schools.',
       image: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=600',
       participants: '200+',
       type: 'Environment',
@@ -385,9 +384,7 @@ const AwardsPage: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-maroon-900 dark:text-golden-400 mb-4">
               Recent Activities
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Explore our ongoing initiatives and community activities that make a difference
-            </p>
+      
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

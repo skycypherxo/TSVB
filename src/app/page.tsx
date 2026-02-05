@@ -116,6 +116,7 @@ const TickerCarousel: React.FC<{ items: Event[]; t: any; showDate?: boolean }> =
 
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   const features = [
     {
@@ -140,50 +141,61 @@ const HomePage: React.FC = () => {
     },
   ];
 
-  const latestEvents = [
+  const allEvents = [
     {
       title: '🏅 Nidambooru Beedu Shree Award 2026',
       date: '31st January 2026',
       location: 'Shri K. Srinivasa Hegde - Advocate & Eminent Social Worker',
       image: getImagePath('/Aw1.jpeg'),
+      category: 'Cultural',
     },
     {
       title: '🏆 Nidambooru Beedu Ballal Award 2026',
       date: '2026',
       location: 'Shri Brahma Baidarkala Yakshagana Kala Mandali - Bolje, Udyavara',
       image: getImagePath('/Aw2.jpeg'),
+      category: 'Cultural',
     },
     {
       title: 'Annual Cultural Festival',
       date: 'March 15, 2024',
       location: 'Ambalapady Community Hall',
       image: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=800',
+      category: 'Cultural',
     },
     {
       title: 'Educational Workshop',
       date: 'April 20, 2024',
       location: 'Trust Premises',
       image: 'https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=800',
+      category: 'Education',
     },
     {
-      title: 'Heritage Walk',
+      title: 'Free Health Camp',
       date: 'May 10, 2024',
-      location: 'Udupi Historic Sites',
-      image: 'https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=800',
+      location: 'Ambalapady',
+      image: 'https://images.pexels.com/photos/3952234/pexels-photo-3952234.jpeg?auto=compress&cs=tinysrgb&w=800',
+      category: 'Healthcare',
+    },
+    {
+      title: 'Community Service Drive',
+      date: 'June 5, 2024',
+      location: 'Nidambooru',
+      image: 'https://images.pexels.com/photos/6646937/pexels-photo-6646937.jpeg?auto=compress&cs=tinysrgb&w=800',
+      category: 'Others',
     },
   ];
 
+  const categories = ['All', 'Cultural', 'Education', 'Healthcare', 'Others'];
+  
+  const latestEvents = selectedCategory === 'All' 
+    ? allEvents 
+    : allEvents.filter(event => event.category === selectedCategory);
+
   const tickerUpdates = [
-    "� Nidambooru Beedu Shree Award 2026",
+    "🏆 Nidambooru Beedu Shree Award 2026",
     "🏆 Nidambooru Beedu Ballal Award 2026",
-    "�🎉 New Cultural Workshop starting February 2025 - Register now!",
-    "📢 Annual Festival dates announced - March 15-17, 2025",
-    "🏆 TSVB Trust awarded 'Heritage Preservation Excellence' recognition",
-    "📚 Free educational resources now available for community members",
-    "🙏 Successful completion of temple renovation project",
-    "🌟 New heritage documentation project launched this month",
-    "💝 Special thanks to all donors for their generous contributions",
-    "📖 Monthly newsletter now available in both English and Kannada"
+
   ];
 
   return (
@@ -277,35 +289,60 @@ const HomePage: React.FC = () => {
                 The Nidambooru Beedu Tripurasundari Vijaya Ballal Trust is dedicated to preserving and promoting the rich cultural and spiritual legacy of Nidambooru Beedu. The Trust remains committed to upholding age-old traditions, values, and the unique cultural identity of the region, while nurturing a deep spirit of devotion, service, and social responsibility.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <button className="btn-secondary group">
+                <Link href="/about" className="btn-secondary group">
                   <span className="flex items-center">
                     {t('common.learn.more')}
                     <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </span>
-                </button>
+                </Link>
               </div>
             
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-
-
-      {/* Latest Events (Carousel) */}
+      {/* Recent Activities Section */}
       <section className="py-10 bg-gradient-to-br from-golden-50 via-white to-maroon-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900 mandala-bg">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-4">
           <div className="text-center mb-8 animate-fade-in-up">
-            <span className="text-maroon-600 font-semibold text-lg uppercase tracking-wider">{t('home.latest.title')}</span>
+            <span className="text-maroon-600 font-semibold text-lg uppercase tracking-wider">Recent Activities</span>
             <h2 className="text-4xl md:text-5xl font-bold text-maroon-900 dark:text-golden-400 mb-6 mt-2">
-              {t('home.latest.title')}
+              Recent Activities
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-golden-600 to-maroon-700 mx-auto mb-6"></div>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              {t('home.latest.description')}
-            </p>
+            
+            {/* Category Filters */}
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-gradient-to-r from-maroon-800 to-maroon-700 text-white shadow-lg transform scale-105'
+                      : 'bg-white dark:bg-gray-800 text-maroon-900 dark:text-golden-400 border-2 border-maroon-200 dark:border-gray-700 hover:border-maroon-400 dark:hover:border-golden-400'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
-          <TickerCarousel items={latestEvents} t={t} showDate={true} />
+          
+          {latestEvents.length > 0 ? (
+            <TickerCarousel items={latestEvents} t={t} showDate={true} />
+          ) : (
+            <div className="text-center py-16">
+              <div className="inline-block bg-gradient-to-r from-maroon-100 to-golden-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl px-8 py-6 shadow-lg">
+                <p className="text-2xl font-semibold text-maroon-900 dark:text-golden-400 mb-2">
+                  Coming Soon
+                </p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  New activities in this category will be announced shortly
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -323,10 +360,7 @@ const HomePage: React.FC = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-golden-200 bg-clip-text text-transparent">
               {t('home.cta.title')}
             </h2>
-            <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed font-light">
-              {t('home.cta.description')}
-            </p>
-
+         
 
             <TickerCarousel
               items={[

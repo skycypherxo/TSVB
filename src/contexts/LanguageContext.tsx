@@ -43,7 +43,7 @@ const translations = {
     'home.events.section': "What's Coming",
     'home.latest.title': 'Latest Events & Highlights',
     'home.latest.description': 'Explore our most recent and upcoming events, celebrations, and community highlights.',
-    'home.cta.title': 'Join us in preserving our culture and heritage',
+    'home.cta.title': 'Newsletter',
     'home.cta.description': 'Be part of our mission to preserve cultural traditions and serve the community. Your support helps us continue our valuable work for future generations.',
     'home.cta.donate': 'Make a Donation',
     'home.cta.volunteer': 'Volunteer with Us',

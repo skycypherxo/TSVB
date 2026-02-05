@@ -19,17 +19,17 @@ const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   const navItems = [
-    { key: 'nav.home', href: '/' },
-    { key: 'nav.about', href: '/about' },
-    { key: 'nav.newsletter', href: '/newsletter' },
-    { key: 'nav.awards', href: '/awards' },
-    { key: 'nav.history', href: '/history' },
-    { key: 'nav.legacy', href: '/legacy' },
-    { key: 'nav.rootsspoken', href: '/rootsspoken' },
-    { key: 'nav.gallery', href: '/gallery' },
-    { key: 'nav.donations', href: '/donations' },
-    { key: 'nav.contact', href: '/contact' },
-    { key: 'nav.admin', href: '/admin' },
+    { key: 'nav.home', href: '/', label: '' },
+    { key: 'nav.about', href: '/about', label: '' },
+    { key: 'nav.newsletter', href: '/newsletter', label: '' },
+    { key: 'nav.awards', href: '/awards', label: '' },
+    { key: 'nav.history', href: '/history', label: 'History' },
+    { key: 'nav.legacy', href: '/legacy', label: '' },
+    { key: 'nav.rootsspoken', href: '/rootsspoken', label: '' },
+    { key: 'nav.gallery', href: '/gallery', label: '' },
+    { key: 'nav.donations', href: '/donations', label: '' },
+    { key: 'nav.contact', href: '/contact', label: '' },
+    { key: 'nav.admin', href: '/admin', label: '' },
   ];
 
   return (
@@ -37,8 +37,8 @@ const Header: React.FC = () => {
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Title */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="relative w-10 h-10">
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="relative w-8 h-8">
               <Image
                 src={getImagePath("/logo.png")}
                 alt="TSVB Trust Logo"
@@ -48,10 +48,10 @@ const Header: React.FC = () => {
               />
             </div>
             <div>
-              <h1 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h1 className="text-sm font-semibold text-gray-900 dark:text-white">
                 TSVB Trust
               </h1>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
+              <p className="text-[10px] text-gray-600 dark:text-gray-400">
                 Ambalapady, Udupi
               </p>
             </div>
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
                 href={item.href}
                 className="relative text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium transition-colors duration-200 py-2 px-3 group whitespace-nowrap"
               >
-                {t(item.key)}
+                {item.label || t(item.key)}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-golden-400 to-golden-600 transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
@@ -111,7 +111,7 @@ const Header: React.FC = () => {
                   className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {t(item.key)}
+                  {item.label || t(item.key)}
                 </Link>
               ))}
             </nav>

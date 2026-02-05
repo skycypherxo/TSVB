@@ -1,8 +1,9 @@
 'use client'
 
 import React from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { User, Mail, Phone, MapPin, Award, Heart, Users, Target } from 'lucide-react';
+import { User, Mail, Phone, MapPin, Award, Heart, Users, Target, ArrowRight } from 'lucide-react';
 import CulturalPattern from '@/components/CulturalPattern';
 
 // Helper function to get the correct image path with basePath
@@ -40,13 +41,12 @@ const AboutPage: React.FC = () => {
       name: 'Mr. Sushil C Hegde',
       position: 'Digital Media Manager',
       image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: 'Managing digital presence and media outreach for the trust.',
+
     },
     {
       name: 'Vaishnavi Poti',
       position: 'Digital Media Manager',
       image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
-      description: 'Coordinating online communications and digital content strategy.',
     },
   ];
 
@@ -108,10 +108,13 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
               <div className="mt-6 text-center">
-                <p className="text-golden-200 text-lg md:text-xl font-semibold">
+                <p className="text-golden-200 text-lg md:text-xl font-semibold mb-4">
                   Nidambooru Beedu House, Ambalpady
                 </p>
-            
+                <Link href="/history" className="inline-flex items-center gap-2 bg-gradient-to-r from-golden-400 to-golden-600 text-maroon-900 hover:from-golden-500 hover:to-golden-700 font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                  History of Nidambooru Beedu Ballals
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </div>
             </div>
 
@@ -218,11 +221,7 @@ const AboutPage: React.FC = () => {
                     <p className="text-golden-200 font-medium">{manager.position}</p>
                   </div>
                 </div>
-                <div className="p-6">
-                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    {manager.description}
-                  </p>
-                </div>
+               
               </div>
             ))}
           </div>
