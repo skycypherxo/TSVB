@@ -414,9 +414,7 @@ const AwardsPage: React.FC = () => {
                   <h3 className="text-xl font-semibold text-maroon-900 dark:text-white mb-2">
                     {activity.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                    {activity.description}
-                  </p>
+               
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2 text-maroon-700 dark:text-golden-400">
                       <Users className="w-4 h-4" />
