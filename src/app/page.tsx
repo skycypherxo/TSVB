@@ -301,48 +301,19 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Recent Activities Section */}
-      <section className="py-10 bg-gradient-to-br from-golden-50 via-white to-maroon-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900 mandala-bg">
+      {/* Latest Events & Highlights Section */}
+      <section className="py-20 bg-gradient-to-br from-golden-50 via-white to-maroon-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-8 animate-fade-in-up">
-            <span className="text-maroon-600 font-semibold text-lg uppercase tracking-wider">Recent Activities</span>
+          <div className="text-center mb-12 animate-fade-in-up">
+            <span className="text-maroon-600 font-semibold text-lg uppercase tracking-wider">Latest Events & Highlights</span>
             <h2 className="text-4xl md:text-5xl font-bold text-maroon-900 dark:text-golden-400 mb-6 mt-2">
-              Recent Activities
+              Latest Events & Highlights
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-golden-600 to-maroon-700 mx-auto mb-6"></div>
-            
-            {/* Category Filters */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-                    selectedCategory === category
-                      ? 'bg-gradient-to-r from-maroon-800 to-maroon-700 text-white shadow-lg transform scale-105'
-                      : 'bg-white dark:bg-gray-800 text-maroon-900 dark:text-golden-400 border-2 border-maroon-200 dark:border-gray-700 hover:border-maroon-400 dark:hover:border-golden-400'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
+          
           </div>
           
-          {latestEvents.length > 0 ? (
-            <TickerCarousel items={latestEvents} t={t} showDate={true} />
-          ) : (
-            <div className="text-center py-16">
-              <div className="inline-block bg-gradient-to-r from-maroon-100 to-golden-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl px-8 py-6 shadow-lg">
-                <p className="text-2xl font-semibold text-maroon-900 dark:text-golden-400 mb-2">
-                  Coming Soon
-                </p>
-                <p className="text-gray-600 dark:text-gray-300">
-                  New activities in this category will be announced shortly
-                </p>
-              </div>
-            </div>
-          )}
+          <TickerCarousel items={allEvents} t={t} showDate={true} />
         </div>
       </section>
 

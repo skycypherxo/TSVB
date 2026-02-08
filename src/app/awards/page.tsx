@@ -16,6 +16,7 @@ const AwardsPage: React.FC = () => {
   const [activeAwardTab, setActiveAwardTab] = useState<'shree' | 'ballal'>('shree');
   const [activeNidambooruYear, setActiveNidambooruYear] = useState('2026');
   const [activeBallalYear, setActiveBallalYear] = useState('2026');
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   // Nidambooru-Shree Awards data organized by year
   const nidambooruShreeAwards: Record<string, Array<{
@@ -61,6 +62,9 @@ const AwardsPage: React.FC = () => {
 
   const nidambooruYears = Object.keys(nidambooruShreeAwards).sort((a, b) => parseInt(b) - parseInt(a));
   const ballalYears = Object.keys(nidambooruBallalAwards).sort((a, b) => parseInt(b) - parseInt(a));
+
+  // Categories for filtering
+  const categories = ['All', 'Cultural Event', 'Education', 'Healthcare', 'Documentation', 'Empowerment', 'Environment'];
 
   const awards = [
     {
@@ -146,6 +150,11 @@ const AwardsPage: React.FC = () => {
       type: 'Environment',
     },
   ];
+
+  // Filter activities based on selected category
+  const filteredActivities = selectedCategory === 'All' 
+    ? activities 
+    : activities.filter(activity => activity.type === selectedCategory);
 
   return (
     <div className="py-20">
@@ -377,54 +386,85 @@ const AwardsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Activities Section */}
-      <section className="py-20 bg-gradient-to-br from-golden-50 to-maroon-50 dark:from-gray-800 dark:to-gray-900">
+      {/* Recent Activities Section */}
+      <section className="py-10 bg-gradient-to-br from-golden-50 via-white to-maroon-50 dark:from-gray-800 dark:via-gray-850 dark:to-gray-900 mandala-bg">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-maroon-900 dark:text-golden-400 mb-4">
+          <div className="text-center mb-8 animate-fade-in-up">
+            <span className="text-maroon-600 font-semibold text-lg uppercase tracking-wider">Recent Activities</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-maroon-900 dark:text-golden-400 mb-6 mt-2">
               Recent Activities
             </h2>
-      
+            <div className="w-24 h-1 bg-gradient-to-r from-golden-600 to-maroon-700 mx-auto mb-6"></div>
+            
+            {/* Category Filters */}
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-gradient-to-r from-maroon-800 to-maroon-700 text-white shadow-lg transform scale-105'
+                      : 'bg-white dark:bg-gray-800 text-maroon-900 dark:text-golden-400 border-2 border-maroon-200 dark:border-gray-700 hover:border-maroon-400 dark:hover:border-golden-400'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {activities.map((activity, index) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={activity.image}
-                    alt={activity.title}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/80 to-transparent"></div>
-                  <div className="absolute top-4 left-4 bg-golden-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    {activity.type}
+          {filteredActivities.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredActivities.map((activity, index) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={activity.image}
+                      alt={activity.title}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-maroon-900/80 to-transparent"></div>
+                    <div className="absolute top-4 left-4 bg-golden-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                      {activity.type}
+                    </div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <div className="flex items-center space-x-2">
+                        <Calendar className="w-4 h-4" />
+                        <span className="text-sm">{activity.date}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <div className="flex items-center space-x-2">
-                      <Calendar className="w-4 h-4" />
-                      <span className="text-sm">{activity.date}</span>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-maroon-900 dark:text-white mb-2">
+                      {activity.title}
+                    </h3>
+                 
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2 text-maroon-700 dark:text-golden-400">
+                        <Users className="w-4 h-4" />
+                        <span className="text-sm font-medium">{activity.participants} participants</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-maroon-900 dark:text-white mb-2">
-                    {activity.title}
-                  </h3>
-               
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2 text-maroon-700 dark:text-golden-400">
-                      <Users className="w-4 h-4" />
-                      <span className="text-sm font-medium">{activity.participants} participants</span>
-                    </div>
-                  </div>
-                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <div className="inline-block bg-gradient-to-r from-maroon-100 to-golden-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl px-8 py-6 shadow-lg">
+                <p className="text-2xl font-semibold text-maroon-900 dark:text-golden-400 mb-2">
+                  Coming Soon
+                </p>
+                <p className="text-gray-600 dark:text-gray-300">
+                  New activities in this category will be announced shortly
+                </p>
               </div>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
